@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para ti, mi amor</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,500&family=Caveat:wght@600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cielo:#dbeafe; --azul:#3b82f6; --azul-hondo:#1e3a8a;
+    --rosa:#f9a8d4; --rosa-fuerte:#ec4899; --crema:#fff7fb; --tinta:#1e2a4a;
+  }
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Nunito',system-ui,sans-serif; color:var(--tinta); line-height:1.6;
+    background:linear-gradient(180deg,var(--cielo) 0%,#fde4f1 60%,var(--cielo) 100%) fixed;
+  }
+  h1,h2{font-family:'Fraunces',Georgia,serif;color:var(--azul-hondo);line-height:1.1}
+  .nota{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--rosa-fuerte)}
+  section{max-width:980px;margin:0 auto;padding:4.5rem 1.5rem}
+  h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:.4rem}
+  .sub{margin-bottom:2.5rem;max-width:52ch}
+
+  /* Portada */
+  .portada{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:1rem}
+  .portada h1{font-size:clamp(2.8rem,10vw,6rem);font-style:italic}
+  .portada h1 span{color:var(--rosa-fuerte)}
+  .contador{margin-top:1.5rem;background:var(--crema);border:2px solid var(--rosa);border-radius:999px;padding:.8rem 1.8rem;box-shadow:6px 6px 0 var(--azul)}
+  .contador strong{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--azul-hondo)}
+  .portada a{margin-top:1rem;color:var(--azul-hondo);font-weight:600}
+
+  /* Fotos (polaroids) */
+  .fotos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2.2rem 1.6rem}
+  .polaroid{background:#fff;padding:.7rem .7rem 1rem;box-shadow:0 8px 20px rgba(30,58,138,.18);transform:rotate(var(--giro,-2deg));transition:transform .25s}
+  .polaroid:nth-child(2n){--giro:2.5deg}
+  .polaroid:nth-child(3n){--giro:-1deg}
+  .polaroid:hover{transform:rotate(0) scale(1.04)}
+  .marco{aspect-ratio:1;background:linear-gradient(135deg,var(--azul),var(--rosa));display:grid;place-items:center;font-size:3rem;overflow:hidden}
+  .marco img{width:100%;height:100%;object-fit:cover;display:block}
+  .polaroid figcaption{font-family:'Caveat',cursive;font-size:1.35rem;text-align:center;margin-top:.5rem;color:var(--azul-hondo)}
+
+  /* Música */
+  .reproductor{background:var(--azul-hondo);color:#fff;border-radius:28px;padding:1.6rem;display:grid;grid-template-columns:150px 1fr;gap:1.6rem;align-items:center;box-shadow:10px 10px 0 var(--rosa)}
+  .disco{width:150px;height:150px;border-radius:50%;background:repeating-radial-gradient(circle,#0f1d4d 0 3px,#1e3a8a 3px 6px);display:grid;place-items:center;border:4px solid var(--rosa)}
+  .disco::after{content:"♥";width:46px;height:46px;border-radius:50%;background:var(--rosa-fuerte);display:grid;place-items:center;color:#fff}
+  .disco.suena{animation:gira 5s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+  .ahora{font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:.8rem}
+  audio{width:100%;margin-bottom:1rem}
+  .lista{list-style:none;padding:0;display:grid;gap:.4rem}
+  .lista button{width:100%;text-align:left;background:rgba(255,255,255,.08);color:#fff;border:0;border-radius:12px;padding:.6rem .9rem;font:inherit;cursor:pointer}
+  .lista button:hover{background:rgba(255,255,255,.18)}
+  .lista button.activa{background:var(--rosa-fuerte)}
+  .lista small{opacity:.75}
+
+  /* Línea de tiempo */
+  .linea{position:relative;padding-left:2.2rem;border-left:4px dotted var(--azul)}
+  .momento{position:relative;margin-bottom:2.2rem;background:var(--crema);border-radius:18px;padding:1.2rem 1.4rem;box-shadow:0 6px 16px rgba(30,58,138,.12)}
+  .momento::before{content:"♥";position:absolute;left:-3.05rem;top:1rem;width:2rem;height:2rem;border-radius:50%;background:var(--rosa-fuerte);color:#fff;display:grid;place-items:center;font-size:.9rem}
+  .momento h3{font-family:'Fraunces',serif;color:var(--azul-hondo);font-size:1.35rem}
+
+  footer{text-align:center;padding:3rem 1.5rem 4rem}
+  footer p{font-family:'Fraunces',serif;font-style:italic;font-size:1.6rem;color:var(--azul-hondo)}
+
+  :focus-visible{outline:3px solid var(--rosa-fuerte);outline-offset:3px}
+  @media (max-width:560px){.reproductor{grid-template-columns:1fr;justify-items:center}.reproductor>div:last-child{width:100%}}
+  @media (prefers-reduced-motion:reduce){.disco.suena{animation:none}html{scroll-behavior:auto}.polaroid{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<header class="portada">
+  <p class="nota">para la persona que más quiero</p>
+  <h1>Tú y yo,<br><span>nuestra historia</span></h1>
+  <!-- ✏️ Cambia el nombre -->
+  <p>Hecho con cariño para <strong>NOMBRE DE TU NOVIA</strong></p>
+  <div class="contador">Llevamos juntos <strong id="dias">…</strong> días</div>
+  <a href="#fotos">Ver nuestros recuerdos ↓</a>
+</header>
+
+<!-- ============ FOTOS ============ -->
+<section id="fotos">
+  <h2>Nuestras fotos</h2>
+  <p class="sub">Cada foto es un día que no cambiaría por nada.</p>
+  <!-- ✏️ Pon tus fotos en la carpeta "fotos" con estos nombres (o cambia los nombres aquí) -->
+  <div class="fotos">
+    <figure class="polaroid"><div class="marco">♥<img src="fotos/foto1.jpg" alt="Nosotros" onerror="this.remove()"></div><figcaption>Nuestro primer día</figcaption></figure>
+    <figure class="polaroid"><div class="marco">♥<img src="fotos/foto2.jpg" alt="Nosotros" onerror="this.remove()"></div><figcaption>Esa salida increíble</figcaption></figure>
+    <figure class="polaroid"><div class="marco">♥<img src="fotos/foto3.jpg" alt="Nosotros" onerror="this.remove()"></div><figcaption>Tu sonrisa favorita</figcaption></figure>
+    <figure class="polaroid"><div class="marco">♥<img src="fotos/foto4.jpg" alt="Nosotros" onerror="this.remove()"></div><figcaption>Aventuras juntos</figcaption></figure>
+    <figure class="polaroid"><div class="marco">♥<img src="fotos/foto5.jpg" alt="Nosotros" onerror="this.remove()"></div><figcaption>Dulces momentos</figcaption></figure>
+    <figure class="polaroid"><div class="marco">♥<img src="fotos/foto6.jpg" alt="Nosotros" onerror="this.remove()"></div><figcaption>Siempre contigo</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ MÚSICA ============ -->
+<section id="musica">
+  <h2>Nuestra música</h2>
+  <p class="sub">Las canciones que suenan cuando pienso en ti.</p>
+  <div class="reproductor">
+    <div class="disco" id="disco" aria-hidden="true"></div>
+    <div>
+      <p class="ahora" id="ahora">Elige una canción</p>
+      <audio id="audio" controls></audio>
+      <!-- ✏️ Pon tus canciones (mp3) en la carpeta "musica" y edita los nombres -->
+      <ul class="lista" id="lista">
+        <li><button data-src="musica/amandote.mp3" data-t="Amándote — Al2 El Aldeano"><span>Amándote</span> <small>— Al2 El Aldeano</small></button></li>
+        <li><button data-src="musica/ven.mp3" data-t="Ven — Elefante"><span>Ven</span> <small>— Elefante</small></button></li>
+        <li><button data-src="musica/toda-una-vida.mp3" data-t="Toda una vida — Leoni Torres"><span>Toda una vida</span> <small>— Leoni Torres</small></button></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOMENTOS ============ -->
+<section id="momentos">
+  <h2>Nuestros momentos juntos</h2>
+  <p class="sub">Los capítulos más bonitos de esta historia.</p>
+  <!-- ✏️ Cambia fechas y textos por los tuyos; copia un bloque para añadir más -->
+  <div class="linea">
+    <article class="momento"><p class="nota">Enero</p><h3>Cuando nos conocimos</h3><p>Todo empezó en enero. Aquí cuentas cómo fue ese primer día y qué sentiste al verla.</p></article>
+    <article class="momento"><p class="nota">Nuestra primera cita</p><h3>Dónde fuimos</h3><p>Cuenta ese momento especial: el lugar, la comida, las risas.</p></article>
+    <article class="momento"><p class="nota">El día que fuimos novios</p><h3>Lo mejor de mi vida</h3><p>Escribe lo que pasó ese día y lo feliz que te hizo.</p></article>
+    <article class="momento"><p class="nota">Nuestro viaje</p><h3>Una aventura juntos</h3><p>Cuenta cómo fue ese viaje o salida que nunca olvidarás.</p></article>
+    <article class="momento"><p class="nota">Hoy y siempre</p><h3>Y aquí seguimos</h3><p>Desde enero hasta hoy, y todo lo que quiero vivir a tu lado todavía.</p></article>
+  </div>
+</section>
+
+<footer>
+  <p>Te quiero hoy, mañana y siempre.</p>
+  <p class="nota">— tu novio ♥</p>
+</footer>
+
+<script>
+  // ✏️ Pon aquí la fecha en que empezaron (AAAA-MM-DD)
+  const inicio = new Date("2026-01-15");
+  const dias = Math.max(0, Math.floor((Date.now() - inicio) / 86400000));
+  document.getElementById("dias").textContent = dias.toLocaleString("es");
+
+  const audio = document.getElementById("audio");
+  const disco = document.getElementById("disco");
+  const ahora = document.getElementById("ahora");
+  const botones = document.querySelectorAll("#lista button");
+
+  botones.forEach(b => b.addEventListener("click", () => {
+    botones.forEach(x => x.classList.remove("activa"));
+    b.classList.add("activa");
+    audio.src = b.dataset.src;
+    ahora.textContent = b.dataset.t;
+    audio.play().catch(() => {});
+  }));
+  audio.addEventListener("play",  () => disco.classList.add("suena"));
+  audio.addEventListener("pause", () => disco.classList.remove("suena"));
+  audio.addEventListener("ended", () => {
+    const i = [...botones].findIndex(b => b.classList.contains("activa"));
+    if (botones[i + 1]) botones[i + 1].click();
+  });
+</script>
+</body>
+</html>
